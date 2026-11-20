@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>M Afroz — WordPress, Shopify & Full-Stack Web Developer</title>
+    <meta name="description" content="Portfolio of M Afroz — Specialist in WordPress, Elementor, Envato Template Kits, Shopify Stores, and Custom Web Development (HTML, CSS, JS, PHP).">
+    
+    <!-- Google Fonts: Space Grotesk & Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome Icons CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        display: ['Space Grotesk', 'sans-serif'],
+                    },
+                    colors: {
+                        obsidian: '#0B0F19',
+                        surface: '#111827',
+                        surfaceLight: '#1E293B',
+                        cyanAccent: '#38BDF8',
+                        indigoAccent: '#818CF8',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom Base Styles & Subtle Behance-inspired Grid */
+        body {
+            background-color: #0B0F19;
+            color: #94A3B8;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, .font-display {
+            font-family: 'Space Grotesk', sans-serif;
+            color: #F8FAFC;
+        }
+
+        /* Subtle Hero Grid Background */
+        .hero-grid {
+            background-size: 44px 44px;
+            background-image: 
+                linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            mask-image: radial-gradient(ellipse 80% 70% at 50% 30%, #000 50%, transparent 100%);
+            -webkit-mask-image: radial-gradient(ellipse 80% 70% at 50% 30%, #000 50%, transparent 100%);
+        }
+
+        /* Glassmorphism Utilities */
+        .glass-nav {
+            background: rgba(11, 15, 25, 0.8);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .glass-card {
+            background: rgba(17, 24, 39, 0.75);
+            border: 1px solid rgba(255, 255, 255, 0.07);
+            transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .glass-card:hover {
+            border-color: rgba(56, 189, 248, 0.35);
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.6), 0 0 20px rgba(56, 189, 248, 0.08);
+        }
+
+        /* Gradient Text */
+        .text-gradient {
+            background: linear-gradient(135deg, #F8FAFC 30%, #38BDF8 70%, #818CF8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Project Card Hover Browser Mockup Zoom */
+        .project-card:hover .mockup-preview {
+            transform: scale(1.03);
+        }
+        .mockup-preview {
+            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0B0F19;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1E293B;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #38BDF8;
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-cyanAccent selection:text-obsidian">
+
+    <!-- ==================== 1. STICKY GLASSMORPHISM NAVBAR ==================== -->
+    <header class="fixed top-0 left-0 right-0 z-50 glass-nav">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Brand Logo -->
+                <a href="#" class="font-display text-2xl font-bold tracking-tight text-white flex items-center gap-1">
+                    M Afroz<span class="text-cyanAccent text-3xl leading-none">.</span>
+                </a>
+
+                <!-- Desktop Navigation -->
+                <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-300">
+                    <a href="#about" class="hover:text-cyanAccent transition-colors">About</a>
+                    <a href="#skills" class="hover:text-cyanAccent transition-colors">Skills</a>
+                    <a href="#projects" class="hover:text-cyanAccent transition-colors">Projects</a>
+                    <a href="#services" class="hover:text-cyanAccent transition-colors">Services</a>
+                    <a href="#contact" class="hover:text-cyanAccent transition-colors">Contact</a>
+                </nav>
+
+                <!-- Desktop CTA + Mobile Hamburger -->
+                <div class="flex items-center gap-4">
+                    <a href="#contact" class="hidden sm:inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-cyanAccent text-obsidian font-semibold text-sm hover:bg-sky-300 transition-all shadow-lg shadow-cyanAccent/20">
+                        <span>Hire Me</span>
+                        <i class="fa-solid fa-arrow-right text-xs"></i>
+                    </a>
+                    
+                    <button id="mobile-menu-btn" aria-label="Toggle Menu" class="md:hidden p-2.5 rounded-xl bg-surface border border-white/10 text-slate-200 hover:text-cyanAccent">
+                        <i class="fa-solid fa-bars text-lg" id="menu-icon"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Dropdown Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-surface border-b border-white/10 px-4 pt-2 pb-6 space-y-2">
+            <a href="#about" class="mobile-link block px-4 py-3 rounded-xl text-slate-200 hover:bg-white/5 hover:text-cyanAccent font-medium">About</a>
+            <a href="#skills" class="mobile-link block px-4 py-3 rounded-xl text-slate-200 hover:bg-white/5 hover:text-cyanAccent font-medium">Skills</a>
+            <a href="#projects" class="mobile-link block px-4 py-3 rounded-xl text-slate-200 hover:bg-white/5 hover:text-cyanAccent font-medium">Projects</a>
+            <a href="#services" class="mobile-link block px-4 py-3 rounded-xl text-slate-200 hover:bg-white/5 hover:text-cyanAccent font-medium">Services</a>
+            <a href="#contact" class="mobile-link block px-4 py-3 rounded-xl bg-cyanAccent text-obsidian font-semibold text-center mt-2">Hire Me</a>
+        </div>
+    </header>
+
+    <!-- ==================== 2. HERO SECTION ==================== -->
+    <section id="about" class="relative pt-32 pb-20 lg:pt-44 lg:pb-28 overflow-hidden">
+        <!-- Ambient Glow Orbs -->
+        <div class="absolute top-20 left-1/2 -translate-x-1/2 w-[600px] h-[320px] bg-cyanAccent/15 blur-[130px] rounded-full pointer-events-none"></div>
+        <div class="absolute top-40 right-10 w-[300px] h-[300px] bg-indigoAccent/10 blur-[110px] rounded-full pointer-events-none"></div>
+        
+        <!-- Background Grid -->
+        <div class="absolute inset-0 hero-grid pointer-events-none"></div>
+
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <!-- Status Badge -->
+            <div class="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-surface/90 border border-white/10 text-xs sm:text-sm font-medium text-slate-200 mb-8 shadow-sm">
+                <span class="relative flex h-2.5 w-2.5">
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
+                </span>
+                Available for Freelance & Remote Projects
+            </div>
+
+            <!-- Main Headline -->
+            <h1 class="font-display text-4xl sm:text-5xl lg:text-7xl font-bold tracking-tight leading-[1.12] max-w-5xl mx-auto mb-6">
+                Hi, I'm <span class="text-gradient">M Afroz</span> — Building High-Converting Websites & E-Commerce Stores.
+            </h1>
+
+            <!-- Subheadline -->
+            <p class="text-base sm:text-lg lg:text-xl text-slate-400 max-w-3xl mx-auto leading-relaxed mb-10">
+                Full-Stack Web & CMS Developer specializing in <span class="text-slate-200 font-medium">WordPress, Elementor, Envato Template Kits & Themes</span>, high-converting <span class="text-slate-200 font-medium">Shopify Stores</span>, and custom <span class="text-slate-200 font-medium">HTML, CSS, JavaScript & PHP</span> solutions.
+            </p>
+
+            <!-- CTA Buttons -->
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
+                <a href="#projects" class="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-2xl bg-cyanAccent text-obsidian font-bold text-base hover:bg-sky-300 transition-all shadow-xl shadow-cyanAccent/20">
+                    <span>Explore Projects</span>
+                    <i class="fa-solid fa-layer-group"></i>
+                </a>
+                <a href="#contact" class="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-2xl bg-surface hover:bg-surfaceLight text-white font-semibold text-base border border-white/10 transition-all">
+                    <span>Let's Talk</span>
+                    <i class="fa-regular fa-paper-plane text-cyanAccent"></i>
+                </a>
+            </div>
+
+            <!-- Quick Stats Strip -->
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-4xl mx-auto">
+                <div class="glass-card rounded-2xl p-5 flex items-center justify-center gap-4">
+                    <div class="w-12 h-12 rounded-xl bg-cyanAccent/10 text-cyanAccent flex items-center justify-center text-xl">
+                        <i class="fa-solid fa-rocket"></i>
+                    </div>
+                    <div class="text-left">
+                        <div class="font-display text-2xl font-bold text-white">50+ Projects</div>
+                        <div class="text-xs text-slate-400">Successfully Delivered</div>
+                    </div>
+                </div>
+
+                <div class="glass-card rounded-2xl p-5 flex items-center justify-center gap-4">
+                    <div class="w-12 h-12 rounded-xl bg-indigoAccent/10 text-indigoAccent flex items-center justify-center text-xl">
+                        <i class="fa-solid fa-star"></i>
+                    </div>
+                    <div class="text-left">
+                        <div class="font-display text-2xl font-bold text-white">100% Client</div>
+                        <div class="text-xs text-slate-400">Satisfaction & Support</div>
+                    </div>
+                </div>
+
+                <div class="glass-card rounded-2xl p-5 flex items-center justify-center gap-4">
+                    <div class="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-xl">
+                        <i class="fa-solid fa-code"></i>
+                    </div>
+                    <div class="text-left">
+                        <div class="font-display text-xl font-bold text-white">WP & Shopify</div>
+                        <div class="text-xs text-slate-400">Certified CMS Specialist</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== 3. TECH STACK & SKILLS SECTION ==================== -->
+    <section id="skills" class="py-20 border-t border-white/5 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
+                <div>
+                    <span class="text-cyanAccent font-semibold text-sm uppercase tracking-wider">Core Expertise</span>
+                    <h2 class="font-display text-3xl sm:text-4xl font-bold mt-2">Tech Stack & Capabilities</h2>
+                </div>
+                <p class="text-slate-400 max-w-md text-sm sm:text-base">
+                    Combining rapid CMS platforms with clean custom code to launch fast, scalable, and pixel-perfect websites.
+                </p>
+            </div>
+
+            <!-- Skills Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+                <!-- Skill 1 -->
+                <div class="glass-card rounded-2xl p-6 group">
+                    <div class="w-12 h-12 rounded-xl bg-sky-500/10 text-sky-400 flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition-transform">
+                        <i class="fa-brands fa-wordpress"></i>
+                    </div>
+                    <h3 class="text-lg font-bold mb-1.5">WordPress & Themes</h3>
+                    <p class="text-sm text-slate-400">Custom themes, WooCommerce stores, plugin setup, speed & security optimization.</p>
+                </div>
+
+                <!-- Skill 2 -->
+                <div class="glass-card rounded-2xl p-6 group">
+                    <div class="w-12 h-12 rounded-xl bg-pink-500/10 text-pink-400 flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition-transform">
+                        <i class="fa-brands fa-elementor"></i>
+                    </div>
+                    <h3 class="text-lg font-bold mb-1.5">Elementor Pro</h3>
+                    <p class="text-sm text-slate-400">Pixel-perfect responsive layouts, custom widgets, dynamic CPTs & animations.</p>
+                </div>
+
+                <!-- Skill 3 -->
+                <div class="glass-card rounded-2xl p-6 group">
+                    <div class="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-layer-group"></i>
+                    </div>
+                    <h3 class="text-lg font-bold mb-1.5">Envato Kits & Themes</h3>
+                    <p class="text-sm text-slate-400">Full installation, demo import, branding & deep customization of ThemeForest assets.</p>
+                </div>
+
+                <!-- Skill 4 -->
+                <div class="glass-card rounded-2xl p-6 group">
+                    <div class="w-12 h-12 rounded-xl bg-lime-500/10 text-lime-400 flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition-transform">
+                        <i class="fa-brands fa-shopify"></i>
+                    </div>
+                    <h3 class="text-lg font-bold mb-1.5">Shopify & Liquid</h3>
+                    <p class="text-sm text-slate-400">High-converting e-commerce stores, theme customization, Liquid sections & apps.</p>
+                </div>
+
+                <!-- Skill 5 -->
+                <div class="glass-card rounded-2xl p-6 group">
+                    <div class="w-12 h-12 rounded-xl bg-orange-500/10 text-orange-400 flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition-transform">
+                        <i class="fa-brands fa-html5"></i>
+                    </div>
+                    <h3 class="text-lg font-bold mb-1.5">HTML5 & CSS3</h3>
+                    <p class="text-sm text-slate-400">Semantic markup, modern Flexbox/Grid layouts, Tailwind CSS & smooth animations.</p>
+                </div>
+
+                <!-- Skill 6 -->
+                <div class="glass-card rounded-2xl p-6 group">
+                    <div class="w-12 h-12 rounded-xl bg-yellow-500/10 text-yellow-400 flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition-transform">
+                        <i class="fa-brands fa-js"></i>
+                    </div>
+                    <h3 class="text-lg font-bold mb-1.5">JavaScript (ES6+)</h3>
+                    <p class="text-sm text-slate-400">Interactive UI components, DOM manipulation, API integrations & dynamic filters.</p>
+                </div>
+
+                <!-- Skill 7 -->
+                <div class="glass-card rounded-2xl p-6 group">
+                    <div class="w-12 h-12 rounded-xl bg-indigoAccent/10 text-indigoAccent flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition-transform">
+                        <i class="fa-brands fa-php"></i>
+                    </div>
+                    <h3 class="text-lg font-bold mb-1.5">PHP & MySQL</h3>
+                    <p class="text-sm text-slate-400">Custom WordPress functions, backend form handling, database queries & custom scripts.</p>
+                </div>
+
+                <!-- Skill 8 -->
+                <div class="glass-card rounded-2xl p-6 group">
+                    <div class="w-12 h-12 rounded-xl bg-cyanAccent/10 text-cyanAccent flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-gauge-high"></i>
+                    </div>
+                    <h3 class="text-lg font-bold mb-1.5">Speed & SEO Ready</h3>
+                    <p class="text-sm text-slate-400">Core Web Vitals optimization, caching, image compression & mobile-first UX.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== 4. FEATURED PROJECTS SECTION ==================== -->
+    <section id="projects" class="py-24 border-t border-white/5 bg-surface/30">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Section Header + Filter Buttons -->
+            <div class="flex flex-col lg:flex-row lg:items-end justify-between mb-12 gap-6">
+                <div>
+                    <span class="text-cyanAccent font-semibold text-sm uppercase tracking-wider">Selected Work</span>
+                    <h2 class="font-display text-3xl sm:text-4xl font-bold mt-2">Featured Projects</h2>
+                </div>
+
+                <!-- Filter Tabs -->
+                <div class="flex flex-wrap gap-2" id="project-filters">
+                    <button data-filter="all" class="filter-btn active px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold bg-cyanAccent text-obsidian transition-all">
+                        All Projects
+                    </button>
+                    <button data-filter="wordpress" class="filter-btn px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold bg-surface text-slate-300 hover:text-white border border-white/10 transition-all">
+                        WordPress & Elementor
+                    </button>
+                    <button data-filter="shopify" class="filter-btn px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold bg-surface text-slate-300 hover:text-white border border-white/10 transition-all">
+                        Shopify
+                    </button>
+                    <button data-filter="custom" class="filter-btn px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold bg-surface text-slate-300 hover:text-white border border-white/10 transition-all">
+                        Custom Code (HTML/JS/PHP)
+                    </button>
+                </div>
+            </div>
+
+            <!-- Projects Grid (Populated via JS for clean filtering & modal data) -->
+            <div id="projects-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Cards rendered dynamically by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== 5. SERVICES SECTION ==================== -->
+    <section id="services" class="py-24 border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <span class="text-cyanAccent font-semibold text-sm uppercase tracking-wider">What I Offer</span>
+                <h2 class="font-display text-3xl sm:text-4xl font-bold mt-2 mb-4">Development Services</h2>
+                <p class="text-slate-400 text-sm sm:text-base">
+                    End-to-end web development solutions tailored to help businesses, agencies, and e-commerce brands grow online.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Service 1 -->
+                <div class="glass-card rounded-3xl p-8 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-6">
+                            <div class="w-14 h-14 rounded-2xl bg-cyanAccent/10 text-cyanAccent flex items-center justify-center text-2xl">
+                                <i class="fa-brands fa-wordpress-simple"></i>
+                            </div>
+                            <span class="text-xs font-mono text-slate-500">01 / CMS</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">Custom WordPress & Elementor Websites</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                            Complete custom websites built from scratch using Elementor Pro and custom PHP. Fully editable backend so you can manage content effortlessly.
+                        </p>
+                    </div>
+                    <ul class="space-y-2 text-xs sm:text-sm text-slate-300 border-t border-white/5 pt-4">
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-cyanAccent"></i> Custom Header, Footer & Dynamic Templates</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-cyanAccent"></i> Mobile-First & 90+ PageSpeed Score</li>
+                    </ul>
+                </div>
+
+                <!-- Service 2 -->
+                <div class="glass-card rounded-3xl p-8 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-6">
+                            <div class="w-14 h-14 rounded-2xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-2xl">
+                                <i class="fa-solid fa-wand-magic-sparkles"></i>
+                            </div>
+                            <span class="text-xs font-mono text-slate-500">02 / ENVATO</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">Envato Theme & Template Kit Customization</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                            Bought a ThemeForest theme or Envato Elements Template Kit? I handle full installation, demo import, branding, color/font matching, and content setup.
+                        </p>
+                    </div>
+                    <ul class="space-y-2 text-xs sm:text-sm text-slate-300 border-t border-white/5 pt-4">
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-400"></i> Zero-Error Demo Import & Plugin Configuration</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-400"></i> Custom CSS/JS Tweaks Beyond Template Limits</li>
+                    </ul>
+                </div>
+
+                <!-- Service 3 -->
+                <div class="glass-card rounded-3xl p-8 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-6">
+                            <div class="w-14 h-14 rounded-2xl bg-lime-500/10 text-lime-400 flex items-center justify-center text-2xl">
+                                <i class="fa-brands fa-shopify"></i>
+                            </div>
+                            <span class="text-xs font-mono text-slate-500">03 / E-COMMERCE</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">Shopify Store Design & Optimization</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                            Conversion-focused Shopify storefronts with custom Liquid sections, payment gateway integration, product variant setups, and checkout optimization.
+                        </p>
+                    </div>
+                    <ul class="space-y-2 text-xs sm:text-sm text-slate-300 border-t border-white/5 pt-4">
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-lime-400"></i> Custom Liquid Sections & Theme Customization</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-lime-400"></i> Conversion Rate & Speed Optimization</li>
+                    </ul>
+                </div>
+
+                <!-- Service 4 -->
+                <div class="glass-card rounded-3xl p-8 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-6">
+                            <div class="w-14 h-14 rounded-2xl bg-indigoAccent/10 text-indigoAccent flex items-center justify-center text-2xl">
+                                <i class="fa-solid fa-laptop-code"></i>
+                            </div>
+                            <span class="text-xs font-mono text-slate-500">04 / FULL-STACK</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">Custom Front-End & PHP Development</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                            Clean, lightweight landing pages, custom web apps, interactive UI calculators, and PHP/MySQL backend integrations built without bloated page builders.
+                        </p>
+                    </div>
+                    <ul class="space-y-2 text-xs sm:text-sm text-slate-300 border-t border-white/5 pt-4">
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-indigoAccent"></i> Clean HTML5, CSS3, JavaScript & PHP Code</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-indigoAccent"></i> Bug Fixing, API Integration & Migrations</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== 6. CONTACT SECTION & FOOTER ==================== -->
+    <section id="contact" class="py-24 border-t border-white/5 bg-surface/40 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+                
+                <!-- Left Column: Direct Contact Info -->
+                <div class="lg:col-span-5 space-y-6">
+                    <div>
+                        <span class="text-cyanAccent font-semibold text-sm uppercase tracking-wider">Get In Touch</span>
+                        <h2 class="font-display text-3xl sm:text-4xl font-bold mt-2 mb-4">Let's Build Your Next Project</h2>
+                        <p class="text-slate-400 text-sm sm:text-base leading-relaxed">
+                            Have a WordPress, Shopify, Envato customization, or custom web project in mind? Reach out directly or send a message using the form.
+                        </p>
+                    </div>
+
+                    <!-- Direct Contact Cards -->
+                    <div class="space-y-4 pt-2">
+                        <!-- Email with Copy Button -->
+                        <div class="glass-card rounded-2xl p-4 flex items-center justify-between gap-3">
+                            <div class="flex items-center gap-3.5 overflow-hidden">
+                                <div class="w-11 h-11 rounded-xl bg-cyanAccent/10 text-cyanAccent flex items-center justify-center shrink-0">
+                                    <i class="fa-solid fa-envelope"></i>
+                                </div>
+                                <div class="truncate">
+                                    <div class="text-xs text-slate-400">Email Address</div>
+                                    <div id="email-text" class="text-sm font-semibold text-white truncate">contact@mafroz.dev</div>
+                                </div>
+                            </div>
+                            <button onclick="copyEmail()" class="px-3 py-2 rounded-xl bg-white/5 hover:bg-cyanAccent hover:text-obsidian text-slate-300 text-xs font-semibold transition-all shrink-0" title="Copy Email">
+                                <i class="fa-regular fa-copy mr-1"></i> Copy
+                            </button>
+                        </div>
+
+                        <!-- WhatsApp -->
+                        <a href="https://wa.me/923000000000" target="_blank" rel="noopener noreferrer" class="glass-card rounded-2xl p-4 flex items-center gap-3.5 block">
+                            <div class="w-11 h-11 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center shrink-0">
+                                <i class="fa-brands fa-whatsapp text-xl"></i>
+                            </div>
+                            <div>
+                                <div class="text-xs text-slate-400">WhatsApp Direct</div>
+                                <div class="text-sm font-semibold text-white">Chat on WhatsApp</div>
+                            </div>
+                        </a>
+
+                        <!-- Social Links Row -->
+                        <div class="grid grid-cols-2 gap-4">
+                            <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="glass-card rounded-2xl p-4 flex items-center gap-3">
+                                <i class="fa-brands fa-github text-xl text-white"></i>
+                                <span class="text-sm font-semibold text-slate-200">GitHub</span>
+                            </a>
+                            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="glass-card rounded-2xl p-4 flex items-center gap-3">
+                                <i class="fa-brands fa-linkedin text-xl text-sky-400"></i>
+                                <span class="text-sm font-semibold text-slate-200">LinkedIn</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column: Interactive Contact Form -->
+                <div class="lg:col-span-7">
+                    <form id="contact-form" class="glass-card rounded-3xl p-6 sm:p-10 space-y-5">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                            <div>
+                                <label for="name" class="block text-xs font-semibold uppercase tracking-wider text-slate-300 mb-2">Your Name *</label>
+                                <input type="text" id="name" required placeholder="John Doe" class="w-full px-4 py-3.5 rounded-xl bg-obsidian/80 border border-white/10 text-white placeholder-slate-500 focus:outline-none focus:border-cyanAccent text-sm transition-colors">
+                            </div>
+                            <div>
+                                <label for="email" class="block text-xs font-semibold uppercase tracking-wider text-slate-300 mb-2">Email Address *</label>
+                                <input type="email" id="email" required placeholder="john@company.com" class="w-full px-4 py-3.5 rounded-xl bg-obsidian/80 border border-white/10 text-white placeholder-slate-500 focus:outline-none focus:border-cyanAccent text-sm transition-colors">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label for="project-type" class="block text-xs font-semibold uppercase tracking-wider text-slate-300 mb-2">Project Type *</label>
+                            <select id="project-type" class="w-full px-4 py-3.5 rounded-xl bg-obsidian/80 border border-white/10 text-white focus:outline-none focus:border-cyanAccent text-sm transition-colors">
+                                <option value="WordPress & Elementor Website">WordPress & Elementor Website</option>
+                                <option value="Shopify Store Setup / Customization">Shopify Store Setup / Customization</option>
+                                <option value="Envato Theme / Template Kit Setup">Envato Theme / Template Kit Setup</option>
+                                <option value="Custom Website (HTML / CSS / JS / PHP)">Custom Website (HTML / CSS / JS / PHP)</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label for="message" class="block text-xs font-semibold uppercase tracking-wider text-slate-300 mb-2">Project Details *</label>
+                            <textarea id="message" rows="4" required placeholder="Tell me about your website goals, timeline, or reference links..." class="w-full px-4 py-3.5 rounded-xl bg-obsidian/80 border border-white/10 text-white placeholder-slate-500 focus:outline-none focus:border-cyanAccent text-sm transition-colors"></textarea>
+                        </div>
+
+                        <button type="submit" class="w-full py-4 rounded-xl bg-cyanAccent hover:bg-sky-300 text-obsidian font-bold text-sm sm:text-base transition-all shadow-lg shadow-cyanAccent/20 flex items-center justify-center gap-2">
+                            <span>Send Project Inquiry</span>
+                            <i class="fa-solid fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="border-t border-white/5 py-8 bg-obsidian">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs sm:text-sm text-slate-500">
+            <div class="font-display font-bold text-white text-lg">
+                M Afroz<span class="text-cyanAccent">.</span>
+            </div>
+            <p>© 2026 M Afroz. All rights reserved.</p>
+            <div class="flex items-center gap-5">
+                <a href="#about" class="hover:text-cyanAccent transition-colors">Top ↑</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ==================== PROJECT DETAILS MODAL ==================== -->
+    <div id="project-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
+        <div class="bg-surface border border-white/10 rounded-3xl max-w-2xl w-full p-6 sm:p-8 relative shadow-2xl transform transition-all max-h-[90vh] overflow-y-auto">
+            <button onclick="closeModal()" aria-label="Close Modal" class="absolute top-5 right-5 w-10 h-10 rounded-xl bg-white/5 hover:bg-white/10 text-slate-300 hover:text-white flex items-center justify-center">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+
+            <span id="modal-category" class="inline-block px-3 py-1 rounded-full text-xs font-semibold bg-cyanAccent/10 text-cyanAccent mb-3">Category</span>
+            <h3 id="modal-title" class="font-display text-2xl sm:text-3xl font-bold text-white mb-4">Project Title</h3>
+            
+            <!-- Modal Visual Banner -->
+            <div id="modal-banner" class="rounded-2xl overflow-hidden mb-6 border border-white/10"></div>
+
+            <div class="space-y-4 text-sm text-slate-300">
+                <div>
+                    <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-1">Overview & Problem Solved</h4>
+                    <p id="modal-problem" class="leading-relaxed text-slate-300"></p>
+                </div>
+
+                <div>
+                    <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">Technologies Used</h4>
+                    <div id="modal-tags" class="flex flex-wrap gap-2"></div>
+                </div>
+            </div>
+
+            <div class="mt-8 pt-5 border-t border-white/10 flex flex-col sm:flex-row gap-3 justify-end">
+                <button onclick="closeModal()" class="px-5 py-3 rounded-xl bg-white/5 hover:bg-white/10 text-slate-200 text-sm font-semibold">
+                    Close
+                </button>
+                <a id="modal-live-link" href="#" target="_blank" rel="noopener noreferrer" class="px-6 py-3 rounded-xl bg-cyanAccent hover:bg-sky-300 text-obsidian text-sm font-bold inline-flex items-center justify-center gap-2">
+                    <span>Visit Live Demo</span>
+                    <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== TOAST NOTIFICATION ==================== -->
+    <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-24 opacity-0 transition-all duration-300 pointer-events-none">
+        <div class="bg-surface border border-cyanAccent/40 text-white px-5 py-3.5 rounded-2xl shadow-2xl flex items-center gap-3 text-sm font-medium">
+            <i class="fa-solid fa-circle-check text-cyanAccent text-lg"></i>
+            <span id="toast-message">Action successful!</span>
+        </div>
+    </div>
+
+    <!-- ==================== JAVASCRIPT LOGIC ==================== -->
+    <script>
+        // 1. Portfolio Projects Data (6 Realistic Showcase Projects)
+        const projectsData = [
+            {
+                id: 1,
+                title: "Luxury Real Estate Portal",
+                category: "wordpress",
+                categoryLabel: "WordPress & Elementor",
+                shortDesc: "High-end property listing platform with custom search filters, dynamic agent profiles, and mortgage calculator.",
+                problem: "The client needed a fast, easily manageable property portal where agents could upload listings without coding. Built Custom Post Types (CPTs), AJAX property filters in PHP, and sleek Elementor Pro templates.",
+                tags: ["WordPress", "Elementor Pro", "PHP", "Custom CPT"],
+                liveUrl: "https://example.com",
+                accentFrom: "#0284C7",
+                accentTo: "#38BDF8",
+                mockupType: "realestate"
+            },
+            {
+                id: 2,
+                title: "UrbanWear Streetwear Store",
+                category: "shopify",
+                categoryLabel: "Shopify",
+                shortDesc: "Modern fashion e-commerce store featuring custom Liquid lookbooks, slide-out AJAX cart, and size guide popups.",
+                problem: "Standard Shopify themes lacked interactive lookbook bundling and fast mobile drawer carts. Developed custom Liquid sections and vanilla JS cart upsells that boosted average order value by 24%.",
+                tags: ["Shopify", "Custom Liquid", "JavaScript", "CSS3"],
+                liveUrl: "https://example.com",
+                accentFrom: "#4F46E5",
+                accentTo: "#818CF8",
+                mockupType: "shopify"
+            },
+            {
+                id: 3,
+                title: "SaaS Agency Landing Page",
+                category: "wordpress",
+                categoryLabel: "WordPress & Elementor",
+                shortDesc: "Full Envato Template Kit customization tailored for a B2B AI SaaS startup with interactive pricing toggles.",
+                problem: "Transformed a raw Envato Elements Template Kit into a cohesive brand identity with custom SVG illustrations, monthly/yearly pricing switcher, and 96/100 Google PageSpeed optimization.",
+                tags: ["Envato Template Kit", "Elementor", "WordPress", "Speed Opt."],
+                liveUrl: "https://example.com",
+                accentFrom: "#0D9488",
+                accentTo: "#2DD4BF",
+                mockupType: "saas"
+            },
+            {
+                id: 4,
+                title: "FinTech Dashboard & Booking App",
+                category: "custom",
+                categoryLabel: "Custom Code (HTML/JS/PHP)",
+                shortDesc: "Lightweight financial analytics dashboard and consultation booking engine built from scratch without frameworks.",
+                problem: "The client wanted zero CMS bloat and strict form validation for client bookings. Built a responsive semantic HTML5/CSS3 interface powered by ES6 JavaScript and secure PHP/MySQL endpoints.",
+                tags: ["HTML5", "CSS3", "JavaScript", "PHP & MySQL"],
+                liveUrl: "https://example.com",
+                accentFrom: "#2563EB",
+                accentTo: "#60A5FA",
+                mockupType: "fintech"
+            },
+            {
+                id: 5,
+                title: "Organic Skincare E-Commerce",
+                category: "shopify",
+                categoryLabel: "Shopify",
+                shortDesc: "Clean beauty storefront with subscription product options, ingredient accordions, and mobile-first checkout.",
+                problem: "Redesigned an outdated store into a minimalist, trustworthy skincare brand on Shopify with custom product metafields for skin-type filtering and sub-second page transitions.",
+                tags: ["Shopify", "Theme Customization", "Liquid", "Speed Opt."],
+                liveUrl: "https://example.com",
+                accentFrom: "#059669",
+                accentTo: "#34D399",
+                mockupType: "skincare"
+            },
+            {
+                id: 6,
+                title: "Corporate Law Firm Website",
+                category: "wordpress",
+                categoryLabel: "WordPress & Elementor",
+                shortDesc: "Authoritative multi-page corporate website customized from a ThemeForest theme with practice-area directories.",
+                problem: "Installed and deeply customized a premium Envato ThemeForest theme, streamlined bloated scripts, added custom CSS typography hierarchy, and integrated encrypted client intake forms.",
+                tags: ["WordPress", "Envato Theme", "Custom CSS", "PHP"],
+                liveUrl: "https://example.com",
+                accentFrom: "#6366F1",
+                accentTo: "#A5B4FC",
+                mockupType: "corporate"
+            }
+        ];
+
+        // Helper to generate sleek SVG Browser Mockup Thumbnails
+        function generateMockupSVG(project) {
+            return `
+                <div class="w-full h-52 bg-obsidian relative overflow-hidden p-4 flex flex-col justify-between border-b border-white/5">
+                    <div class="absolute inset-0 opacity-20" style="background: radial-gradient(circle at top right, ${project.accentTo}, transparent 70%);"></div>
+                    
+                    <!-- Mini Browser Frame -->
+                    <div class="mockup-preview relative z-10 w-full h-full rounded-xl bg-surface border border-white/10 shadow-2xl overflow-hidden flex flex-col">
+                        <!-- Browser Top Bar -->
+                        <div class="h-6 bg-obsidian/90 px-3 flex items-center justify-between border-b border-white/5">
+                            <div class="flex items-center gap-1.5">
+                                <span class="w-2 h-2 rounded-full bg-rose-500/80"></span>
+                                <span class="w-2 h-2 rounded-full bg-amber-400/80"></span>
+                                <span class="w-2 h-2 rounded-full bg-emerald-400/80"></span>
+                            </div>
+                            <div class="px-3 py-0.5 rounded bg-white/5 text-[9px] text-slate-400 font-mono">
+                                mafroz-showcase.app/${project.mockupType}
+                            </div>
+                            <div class="w-4"></div>
+                        </div>
+
+                        <!-- Simulated Website UI Preview -->
+                        <div class="p-3.5 flex-1 flex flex-col justify-between bg-gradient-to-br from-surface to-obsidian">
+                            <div class="flex items-center justify-between">
+                                <div class="w-16 h-2.5 rounded-full" style="background: ${project.accentTo}"></div>
+                                <div class="flex gap-1.5">
+                                    <div class="w-6 h-1.5 rounded bg-white/15"></div>
+                                    <div class="w-6 h-1.5 rounded bg-white/15"></div>
+                                    <div class="w-8 h-2 rounded" style="background: ${project.accentFrom}"></div>
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-12 gap-2.5 items-center my-auto">
+                                <div class="col-span-7 space-y-2">
+                                    <div class="w-4/5 h-3 rounded bg-white/80"></div>
+                                    <div class="w-full h-2 rounded bg-white/20"></div>
+                                    <div class="w-2/3 h-2 rounded bg-white/20"></div>
+                                    <div class="pt-1 flex gap-1.5">
+                                        <div class="w-14 h-4 rounded-md" style="background: ${project.accentTo}"></div>
+                                        <div class="w-12 h-4 rounded-md border border-white/20"></div>
+                                    </div>
+                                </div>
+                                <div class="col-span-5 h-20 rounded-lg border border-white/10 p-2 flex flex-col justify-between" style="background: linear-gradient(135deg, ${project.accentFrom}33, ${project.accentTo}11);">
+                                    <div class="w-6 h-6 rounded-md flex items-center justify-center text-[10px] text-white" style="background: ${project.accentFrom}">
+                                        <i class="fa-solid fa-code"></i>
+                                    </div>
+                                    <div class="space-y-1">
+                                        <div class="w-full h-1.5 rounded bg-white/30"></div>
+                                        <div class="w-2/3 h-1.5 rounded bg-white/20"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // 2. Render Projects Grid
+        const projectsGrid = document.getElementById('projects-grid');
+
+        function renderProjects(filter = 'all') {
+            const filtered = filter === 'all' 
+                ? projectsData 
+                : projectsData.filter(p => p.category === filter);
+
+            projectsGrid.innerHTML = filtered.map(project => `
+                <article class="project-card glass-card rounded-3xl overflow-hidden flex flex-col justify-between">
+                    <div>
+                        ${generateMockupSVG(project)}
+                        <div class="p-6">
+                            <div class="flex items-center justify-between gap-2 mb-3">
+                                <span class="px-3 py-1 rounded-full text-[11px] font-semibold bg-cyanAccent/10 text-cyanAccent border border-cyanAccent/20">
+                                    ${project.categoryLabel}
+                                </span>
+                            </div>
+                            <h3 class="font-display text-xl font-bold text-white mb-2">${project.title}</h3>
+                            <p class="text-sm text-slate-400 leading-relaxed mb-4">
+                                ${project.shortDesc}
+                            </p>
+                            <div class="flex flex-wrap gap-1.5 mb-6">
+                                ${project.tags.map(tag => `
+                                    <span class="px-2.5 py-1 rounded-lg bg-white/5 text-slate-300 text-[11px] font-medium">
+                                        ${tag}
+                                    </span>
+                                `).join('')}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="px-6 pb-6 pt-3 border-t border-white/5 flex items-center gap-3">
+                        <button onclick="openModal(${project.id})" class="flex-1 py-2.5 px-4 rounded-xl bg-white/5 hover:bg-cyanAccent hover:text-obsidian text-white text-xs font-bold transition-all">
+                            View Details
+                        </button>
+                        <a href="${project.liveUrl}" target="_blank" rel="noopener noreferrer" class="py-2.5 px-4 rounded-xl border border-white/10 hover:border-cyanAccent text-slate-300 hover:text-cyanAccent text-xs font-semibold transition-all inline-flex items-center gap-1.5">
+                            <span>Live</span>
+                            <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                        </a>
+                    </div>
+                </article>
+            `).join('');
+        }
+
+        // Initial render
+        renderProjects('all');
+
+        // 3. Filter Button Interactions
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        filterButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterButtons.forEach(b => {
+                    b.classList.remove('bg-cyanAccent', 'text-obsidian');
+                    b.classList.add('bg-surface', 'text-slate-300', 'border', 'border-white/10');
+                });
+                btn.classList.remove('bg-surface', 'text-slate-300', 'border', 'border-white/10');
+                btn.classList.add('bg-cyanAccent', 'text-obsidian');
+
+                const filterValue = btn.getAttribute('data-filter');
+                renderProjects(filterValue);
+            });
+        });
+
+        // 4. Project Details Modal Logic
+        const modal = document.getElementById('project-modal');
+        function openModal(projectId) {
+            const project = projectsData.find(p => p.id === projectId);
+            if (!project) return;
+
+            document.getElementById('modal-category').textContent = project.categoryLabel;
+            document.getElementById('modal-title').textContent = project.title;
+            document.getElementById('modal-problem').textContent = project.problem;
+            document.getElementById('modal-live-link').href = project.liveUrl;
+            document.getElementById('modal-banner').innerHTML = generateMockupSVG(project);
+            document.getElementById('modal-tags').innerHTML = project.tags.map(t => `
+                <span class="px-3 py-1.5 rounded-xl bg-white/5 border border-white/10 text-xs font-semibold text-slate-200">${t}</span>
+            `).join('');
+
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+            document.body.style.overflow = '';
+        }
+
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) closeModal();
+        });
+
+        // 5. Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIcon = document.getElementById('menu-icon');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            const isHidden = mobileMenu.classList.contains('hidden');
+            mobileMenu.classList.toggle('hidden');
+            menuIcon.className = isHidden ? 'fa-solid fa-xmark text-lg' : 'fa-solid fa-bars text-lg';
+        });
+
+        document.querySelectorAll('.mobile-link').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                menuIcon.className = 'fa-solid fa-bars text-lg';
+            });
+        });
+
+        // 6. Toast Notification Helper
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toast-message').textContent = message;
+            toast.classList.remove('translate-y-24', 'opacity-0');
+            setTimeout(() => {
+                toast.classList.add('translate-y-24', 'opacity-0');
+            }, 3500);
+        }
+
+        // 7. Copy Email Function (iFrame & GitHub Pages safe)
+        function copyEmail() {
+            const emailText = document.getElementById('email-text').textContent;
+            const tempInput = document.createElement('input');
+            tempInput.value = emailText;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempInput);
+            showToast('Email copied to clipboard: ' + emailText);
+        }
+
+        // 8. Contact Form Submission Handler
+        document.getElementById('contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const userName = document.getElementById('name').value.trim();
+            showToast(`Thanks ${userName}! Your inquiry has been received.`);
+            this.reset();
+        });
+    </script>
+</body>
+</html>
